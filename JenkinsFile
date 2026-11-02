@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Pulls the code from the Git repository configured in the Jenkins job
+                checkout scm 
+            }
+        }
+        
+        stage('Compile') {
+            steps {
+                echo 'Compiling the Java program...'
+                // Compiles the file into a Java bytecode class
+                sh 'javac HelloWorld.java' 
+            }
+        }
+        
+        stage('Execute') {
+            steps {
+                echo 'Executing the application...'
+                // Runs the compiled Java class file
+                sh 'java HelloWorld' 
+            }
+        }
+    }
+}
+
